@@ -32,11 +32,19 @@ app.controller('EmployeesController', ['$http', function ($http) {
     };
 
     // Function to toggle is_active 
-    self.toggleActive = function (employeeId) {
+    self.toggleActive = function (employeeId, is_active) {
+        // Toggle is_active status based on current active status
+        if (is_active) {
+            var is_active = false;
+        } else {
+            var is_active = true;
+        }
+
+        // Employee PUT is_active toggle
         $http({
             method: 'PUT',
             url: '/employees/' + employeeId,
-            data: { status: true }
+            data: { status: is_active }
         }).then(function (response) {
             self.getEmployees();
         })

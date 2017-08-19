@@ -36,7 +36,7 @@
         <td>{{employee.last_name}}</td>
         <td>{{employee.job_title}}</td>
         <td>{{employee.salary}}</td>
-        <td><button ng-click="vm.toggleActive(employee.id)">Toggle Active</button></td>
+        <td><button ng-click="vm.toggleActive(employee.id, employee.is_active)">Toggle Active</button></td>
       </tr>
     </tbody>
   </table>
