@@ -27,14 +27,16 @@
         <th>Last</th>
         <th>Job</th>
         <th>Salary</th>
+        <th>isActive?</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="person in vm.employees">
-        <td>{{person.first_name}}</td>
-        <td>{{person.last_name}}</td>
-        <td>{{person.job_title}}</td>
-        <td>{{person.salary}}</td>
+      <tr ng-repeat="employee in vm.employees">
+        <td>{{employee.first_name}}</td>
+        <td>{{employee.last_name}}</td>
+        <td>{{employee.job_title}}</td>
+        <td>{{employee.salary}}</td>
+        <td><button ng-click="vm.toggleActive(employee.id)">Toggle Active</button></td>
       </tr>
     </tbody>
   </table>

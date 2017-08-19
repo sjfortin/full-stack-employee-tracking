@@ -31,18 +31,27 @@ app.controller('EmployeesController', ['$http', function ($http) {
         });
     };
 
-    // Calculate total monthly salary expenditure
-    function monthlySalaryExp(employees) {
-        var salariesArray = employees.map(function (employee) {
-            return employee.salary;
-        });
-        var totalSalary = salariesArray.reduce(function (x, y) {
-            return x + y;
-        });
-        var monthlyExpenditure = (totalSalary / 12).toFixed(2);
-        return monthlyExpenditure;
+    self.toggleActive = function(employeeId) {
+        $http({
+            method: 'PUT',
+            url: '/employees/' + employeeId
+        }).then(function(response){
+            self.getEmployees();
+        })
     }
 
     self.getEmployees();
 
 }]);
+
+// Calculate total monthly salary expenditure
+function monthlySalaryExp(employees) {
+    var salariesArray = employees.map(function (employee) {
+        return employee.salary;
+    });
+    var totalSalary = salariesArray.reduce(function (x, y) {
+        return x + y;
+    });
+    var monthlyExpenditure = (totalSalary / 12).toFixed(2);
+    return monthlyExpenditure;
+}

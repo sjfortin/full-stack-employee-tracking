@@ -21,6 +21,27 @@ router.post('/', function (req, res) {
     });
 });
 
+router.put('/:id', function (req, res) {
+    console.log(req.body);
+    
+    pool.connect(function (errDatabase, client, done) {
+        if (errDatabase) {
+            console.log('Error connecting to database', errDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query('UPDATE employees SET is_active=$1 WHERE id=$2;', [false, req.params.id], function (errQuery, data) {
+                done();
+                if (errQuery) {
+                    console.log('Error making database query', errQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(201);
+                }
+            });
+        }
+    });
+});
+
 router.get('/', function (req, res) {
     pool.connect(function (errDatabase, client, done) {
         if (errDatabase) {
