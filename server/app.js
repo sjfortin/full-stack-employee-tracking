@@ -12,6 +12,6 @@ app.use(express.static('public'));
 
 app.use('/employees', employees);
 
-app.listen(port, function(){
-    console.log('Running on port', port); 
+app.listen(port, function () {
+    console.log('Running on port', port);
 });
