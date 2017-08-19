@@ -24,11 +24,17 @@
           <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
               <label>First name</label>
-              <input ng-model="vm.newEmployee.first_name">
+              <input ng-model="vm.newEmployee.first_name" required name="firstName">
+              <div ng-messages="employeeAddForm.firstName.$error" role="alert">
+                <div ng-message="required">This is required.</div>
+              </div>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
               <label>Last name</label>
-              <input ng-model="vm.newEmployee.last_name">
+              <input ng-model="vm.newEmployee.last_name" required name="lastName">
+              <div ng-messages="employeeAddForm.lastName.$error" role="alert">
+                <div ng-message="required">This is required.</div>
+              </div>
             </md-input-container>
           </div>
           <div layout-gt-sm="row">
@@ -38,7 +44,10 @@
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
               <label>Annual Salary</label>
-              <input ng-model="vm.newEmployee.salary">
+              <input ng-model="vm.newEmployee.salary" type="number" min="0" max="9999999999" name="salary" required>
+              <div ng-messages="employeeAddForm.salary.$error" role="alert">
+                <div ng-message="required">This is required.</div>
+              </div>
             </md-input-container>
           </div>
           <div layout-gt-sm="row">
@@ -49,8 +58,9 @@
     </md-content>
     <md-content layout-padding>
       <h1 md-colors="{color: 'grey-900'}">Employee List</h1>
+      <h3 md-colors="{color: 'grey-700'}">Active Employees</h3>
       <md-list>
-        <md-list-item class="md-2-line" ng-repeat="employee in vm.employees">
+        <md-list-item class="md-2-line" ng-repeat="employee in vm.employees" ng-if="employee.is_active">
           <div class="md-list-item-text">
             <h3>{{employee.first_name}} {{employee.last_name}}</h3>
             <p>{{employee.job_title}}</p>
@@ -58,7 +68,20 @@
           </div>
           <md-button class="md-secondary md-raised md-cornered" ng-click="vm.toggleActive(employee.id, employee.is_active)" ng-class="{'md-primary': employee.is_active}">{{employee.is_active ? 'Make Inactive' : 'Activate'}}</md-button>
           <md-button ng-show="employee.is_active" class="md-secondary md-raised md-cornered md-primary ">Edit</md-button>
-          <md-divider ng-if="!$last"></md-divider>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
+      <md-list>
+        <h3 md-colors="{color: 'grey-700'}">Inactive Employees</h3>
+        <md-list-item class="md-2-line" ng-repeat="employee in vm.employees" ng-if="!employee.is_active">
+          <div class="md-list-item-text">
+            <h3>{{employee.first_name}} {{employee.last_name}}</h3>
+            <p>{{employee.job_title}}</p>
+            <p>{{employee.salary}}</p>
+          </div>
+          <md-button class="md-secondary md-raised md-cornered" ng-click="vm.toggleActive(employee.id, employee.is_active)" ng-class="{'md-primary': employee.is_active}">{{employee.is_active ? 'Make Inactive' : 'Activate'}}</md-button>
+          <md-button ng-show="employee.is_active" class="md-secondary md-raised md-cornered md-primary ">Edit</md-button>
+          <md-divider></md-divider>
         </md-list-item>
       </md-list>
     </md-content>
