@@ -42,7 +42,7 @@
             </md-input-container>
           </div>
           <div layout-gt-sm="row">
-            <md-button class="md-raised md-cornered md-primary md-hue-2" type="submit">Submit</md-button>
+            <md-button class="md-raised md-cornered md-primary" type="submit">Submit</md-button>
           </div>
         </form>
       </div>
@@ -56,7 +56,8 @@
             <p>{{employee.job_title}}</p>
             <p>{{employee.salary}}</p>
           </div>
-          <md-button class="md-secondary md-raised md-cornered" ng-click="vm.toggleActive(employee.id, employee.is_active)" ng-class="{'md-primary': employee.is_active}">{{employee.is_active ? 'Mark Inactive' : 'Mark Active'}}</md-button>
+          <md-button class="md-secondary md-raised md-cornered" ng-click="vm.toggleActive(employee.id, employee.is_active)" ng-class="{'md-primary': employee.is_active}">{{employee.is_active ? 'Make Inactive' : 'Activate'}}</md-button>
+          <md-button ng-show="employee.is_active" class="md-secondary md-raised md-cornered md-primary ">Edit</md-button>
           <md-divider ng-if="!$last"></md-divider>
         </md-list-item>
       </md-list>
