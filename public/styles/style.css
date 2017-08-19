@@ -1,7 +1,3 @@
-tr.inactive td {
-    color: #ddd;
-}
-
-tr.inactive td button {
-    color: #ddd;
+h3.active {
+    color: darkblue !important;
 }
