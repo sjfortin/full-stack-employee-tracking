@@ -57,12 +57,27 @@ app.controller('EmployeesController', ['$http', function ($http) {
 
 // Calculate total monthly salary expenditure
 function monthlySalaryExp(employees) {
-    var salariesArray = employees.map(function (employee) {
+
+    // Array of active employees
+    var activeEmployees = employees.filter(function (employee) {
+        return employee.is_active;      
+    });
+
+    // Array of active employee's salaries
+    var salariesArray = activeEmployees.map(function (employee) {
         return employee.salary;
     });
-    var totalSalary = salariesArray.reduce(function (x, y) {
-        return x + y;
-    });
+    
+    // Calculate the total annual salary expenses
+    if(salariesArray.length !== 0) {
+        var totalSalary = salariesArray.reduce(function (x, y) {
+            return x + y;
+        });
+    } else {
+        var totalSalary = 0;
+    }
+
+    // Calculate total monthly salary expenses
     var monthlyExpenditure = (totalSalary / 12).toFixed(2);
     return monthlyExpenditure;
 }
