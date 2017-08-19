@@ -31,11 +31,13 @@ app.controller('EmployeesController', ['$http', function ($http) {
         });
     };
 
-    self.toggleActive = function(employeeId) {
+    // Function to toggle is_active 
+    self.toggleActive = function (employeeId) {
         $http({
             method: 'PUT',
-            url: '/employees/' + employeeId
-        }).then(function(response){
+            url: '/employees/' + employeeId,
+            data: { status: true }
+        }).then(function (response) {
             self.getEmployees();
         })
     }
