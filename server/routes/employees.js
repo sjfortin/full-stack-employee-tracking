@@ -48,12 +48,13 @@ router.get('/', function (req, res) {
             console.log('Error connecting to database', err);
             res.sendStatus(500);
         } else {
-            client.query('SELECT * FROM employees;', function (errQuery, data) {
+            client.query('SELECT * FROM employees ORDER BY last_name ASC, first_name ASC;', function (errQuery, data) {
                 done();
                 if (errQuery) {
                     console.log('Error making database query', errQuery);
                     res.sendStatus(500);
                 } else {
+                    console.log(data.rows);
                     res.send(data.rows);
                 }
             });
