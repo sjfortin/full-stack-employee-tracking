@@ -3,9 +3,12 @@
 
 <head>
   <title>Employees Full Stack</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <script src="vendors/angular.min.js"></script>
+  <script src="scripts/client.js"></script>
 </head>
 
-<body>
+<body ng-app="EmployeesApp" ng-controller="EmployeesController as vm">
   <h1>Add Employee</h1>
   <label for="first-name">First Name</label>
   <input type="text" placeholder="First Name">
@@ -27,8 +30,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
+      <tr ng-repeat="person in vm.employees">
+        <td>{{person.first_name}}</td>
+        <td>{{person.last_name}}</td>
+        <td>{{person.job_title}}</td>
+        <td>{{person.salary}}</td>
       </tr>
     </tbody>
   </table>
