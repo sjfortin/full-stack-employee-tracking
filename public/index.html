@@ -17,7 +17,7 @@
 <body ng-app="EmployeesApp" ng-cloak>
   <div ng-controller="EmployeesController as vm" layout="column" ng-cloak class="md-inline-form">
     <md-content layout-padding>
-      <h1>Employees Full Stack</h1>
+      <h1 md-colors="{color: 'grey-900'}">Employees Full Stack</h1>
       <div>
         <form name="employeeAddForm" ng-submit="vm.addEmployee()">
           <div layout-gt-sm="row">
@@ -47,22 +47,22 @@
       </div>
     </md-content>
     <md-content layout-padding>
-      <h1>Employee List</h1>
+      <h1 md-colors="{color: 'grey-900'}">Employee List</h1>
       <md-list>
         <md-list-item class="md-2-line" ng-repeat="employee in vm.employees">
           <div class="md-list-item-text">
-            <h3 ng-class="{'inactive': !employee.is_active, 'active': employee.is_active}">{{employee.first_name}} {{employee.last_name}}</h3>
+            <h3>{{employee.first_name}} {{employee.last_name}}</h3>
             <p>{{employee.job_title}}</p>
             <p>{{employee.salary}}</p>
           </div>
-          <md-button class="md-secondary md-raised md-cornered md-primary md-hue-1" ng-click="vm.toggleActive(employee.id, employee.is_active)">{{employee.is_active ? 'Mark Inactive' : 'Mark Active'}}</md-button>
+          <md-button class="md-secondary md-raised md-cornered" ng-click="vm.toggleActive(employee.id, employee.is_active)" ng-class="{'md-primary': employee.is_active}">{{employee.is_active ? 'Mark Inactive' : 'Mark Active'}}</md-button>
+          <md-button class="md-secondary md-raised md-cornered">Delete</md-button>
           <md-divider ng-if="!$last"></md-divider>
         </md-list-item>
       </md-list>
     </md-content>
     <md-content layout-padding>
-      <h1>Monthly Expenses</h1>
-      <p>Monthly Salary Expense: {{vm.monthlyExpenditure}}</p>
+      <h1 md-colors="{color: 'grey-900'}">Monthly Salary Expenses = {{vm.monthlyExpenditure}}</h1>
     </md-content>
   </div>
 </body>
