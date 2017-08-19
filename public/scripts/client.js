@@ -1,4 +1,4 @@
-var app = angular.module('EmployeesApp', []);
+var app = angular.module('EmployeesApp', ['ngMaterial']);
 
 app.controller('EmployeesController', ['$http', function ($http) {
     console.log('Employees Controller loaded');
