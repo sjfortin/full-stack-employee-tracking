@@ -11,14 +11,14 @@
 <body ng-app="EmployeesApp" ng-controller="EmployeesController as vm">
   <h1>Add Employee</h1>
   <label for="first-name">First Name</label>
-  <input type="text" placeholder="First Name">
+  <input type="text" placeholder="First Name" ng-model="vm.newEmployee.first_name">
   <label for="last-name">Last Name</label>
-  <input type="text" placeholder="Last Name">
+  <input type="text" placeholder="Last Name" ng-model="vm.newEmployee.last_name">
   <label for="job-title">Job Title</label>
-  <input type="text" placeholder="Job Title">
+  <input type="text" placeholder="Job Title" ng-model="vm.newEmployee.job_title">
   <label for="salary">Annual Salary</label>
-  <input type="text" placeholder="Annual Salary">
-  <button>Submit</button>
+  <input type="text" placeholder="Annual Salary" ng-model="vm.newEmployee.salary">
+  <button ng-click="vm.addEmployee()">Submit</button>
   <h1>Employee List</h1>
   <table>
     <thead>

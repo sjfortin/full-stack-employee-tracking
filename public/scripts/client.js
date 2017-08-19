@@ -2,7 +2,7 @@ var app = angular.module('EmployeesApp', []);
 
 app.controller('EmployeesController', ['$http', function ($http) {
     console.log('Employees Controller loaded');
-    
+
     var self = this;
     self.employees = [];
 
@@ -15,6 +15,17 @@ app.controller('EmployeesController', ['$http', function ($http) {
             self.employees = response.data;
         });
     }
+
+    self.addEmployee = function () {
+        $http({
+            method: 'POST',
+            url: '/employees',
+            data: self.newEmployee
+        }).then(function (response) {
+            self.getEmployees();
+            self.newEmployee = {};
+        });
+    };
 
     self.getEmployees();
 
