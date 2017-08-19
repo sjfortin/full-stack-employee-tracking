@@ -6,6 +6,7 @@ app.controller('EmployeesController', ['$http', function ($http) {
     var self = this;
 
     self.employees = [];
+    self.isActive = 'active';
 
     // Employee GET request
     self.getEmployees = function () {

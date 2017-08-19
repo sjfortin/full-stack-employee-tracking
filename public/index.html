@@ -31,12 +31,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="employee in vm.employees">
+      <tr ng-repeat="employee in vm.employees" ng-class="{'inactive': !employee.is_active, 'active': employee.is_active}">
         <td>{{employee.first_name}}</td>
         <td>{{employee.last_name}}</td>
         <td>{{employee.job_title}}</td>
         <td>{{employee.salary}}</td>
-        <td><button ng-click="vm.toggleActive(employee.id, employee.is_active)">Toggle Active</button></td>
+        <td><button ng-click="vm.toggleActive(employee.id, employee.is_active)">{{employee.is_active ? 'Mark Inactive' : 'Mark Active'}}</button></td>
       </tr>
     </tbody>
   </table>
