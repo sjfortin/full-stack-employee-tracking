@@ -17,11 +17,17 @@
 </head>
 
 <body ng-app="EmployeesApp" ng-controller="EmployeesController as vm">
-  <div class="banner">
-    <h1>Employees Full Stack</h1>
-  </div>
+
+  <!-- Header Bar -->
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2 flex md-truncate>Employees Full Stack</h2>
+    </div>
+  </md-toolbar>
+
+  <!-- Add a Person form -->
   <div layout="row" layout-padding layout-margin>
-    <div flex class="md-inline-form">
+    <div flex class="md-inline-form add-employee-form md-whiteframe-6dp">
       <h1>Add Employee</h1>
       <form name="vm.employeeAddForm">
         <div layout-gt-sm="row">
@@ -51,8 +57,11 @@
     </div>
   </div>
   <div layout-gt-sm layout="column" layout-padding layout-margin>
-    <div flex="33" class="active-employees">
+
+    <!-- Active Employee List -->
+    <div flex="33" class="active-employees md-whiteframe-6dp">
       <h1>Active Employees</h1>
+
       <div ng-repeat="employee in vm.employees" ng-if="employee.is_active">
         <md-card>
           <md-card-header>
@@ -64,17 +73,21 @@
           <md-card-content>
             <p>Annual Salary: {{vm.getEmployeeSalary(employee.salary)}}</p>
           </md-card-content>
+
+          <!-- Employee Action Buttons -->
           <md-card-actions layout="row" layout-align="end center">
-            <md-button ng-show="employee.editing" class="md-raised md-primary md-hue-1" ng-click="vm.updateEmployee(employee.id, employee.editing)">Submit Edit</md-button>
-            <md-button ng-show="employee.is_active" class="md-secondary md-raised md-cornered md-primary" ng-click="vm.editStatus(employee.id, employee.editing)">{{!employee.editing ? 'Edit' : 'Cancel'}}</md-button>
+            <md-button ng-show="employee.editing" class="md-raised md-primary" ng-click="vm.updateEmployee(employee.id, employee.editing)">Submit Edit</md-button>
+            <md-button ng-show="employee.is_active" class="md-secondary md-raised md-cornered md-primary md-hue-1" ng-click="vm.editStatus(employee.id, employee.editing)">{{!employee.editing ? 'Edit' : 'Cancel'}}</md-button>
             <md-button class="md-secondary md-raised md-cornered md-accent" ng-click="vm.toggleActive(employee.id, employee.is_active)">Mark Inactive</md-button>
           </md-card-actions>
+
+          <!-- Employee Edit Form -->
           <md-card-footer ng-show="employee.editing">
             <h4>Edit {{employee.first_name}}</h4>
             <form name="vm.employeeUpdateForm">
               <md-input-container class="md-block">
                 <label>First name</label>
-                <input ng-model="vm.changeEmployee.first_name" name="editFirstName" required>
+                <input ng-model="vm.changeEmployee.first_name" name="editFirstName" ng-value="employee.first_name" required>
               </md-input-container>
               <md-input-container class="md-block">
                 <label>Last Name</label>
@@ -93,7 +106,9 @@
         </md-card>
       </div>
     </div>
-    <div flex="33" class="inactive-employees">
+
+    <!-- Inactive Employee List -->
+    <div flex="33" class="inactive-employees md-whiteframe-6dp">
       <h1>Inactive Employees</h1>
       <div ng-repeat="employee in vm.employees" ng-if="!employee.is_active">
         <md-card>
@@ -112,7 +127,9 @@
         </md-card>
       </div>
     </div>
-    <div flex="33" class="total-expenditures">
+
+    <!-- Total Monthly Salary -->
+    <div flex="33" class="total-expenditures md-whiteframe-6dp">
       <h1>Total Monthly Salary Expenses:</h1>
       <h1>{{vm.monthlyExpenditure}}</h1>
     </div>

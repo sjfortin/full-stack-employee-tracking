@@ -1,11 +1,5 @@
-.banner {
-    text-align: center;
-    padding: 10px 0;
-    background: #212121;
-}
-
-.banner h1 {
-    color: #fff;
+.add-employee-form {
+    background: #fff;
 }
 
 .total-expenditures {
