@@ -97,6 +97,11 @@ app.controller('EmployeesController', ['$http', function ($http) {
         });
     }
 
+    // Return formatted employee salary
+    self.getEmployeeSalary = function(salary) {
+        return accounting.formatMoney(salary);
+    }
+
     self.getEmployees();
 
 }]);
@@ -126,5 +131,5 @@ function monthlySalaryExp(employees) {
     // Calculate total monthly salary expenses
     var monthlyExpenditure = (totalSalary / 12).toFixed(2);
 
-    return monthlyExpenditure;
+    return accounting.formatMoney(monthlyExpenditure);
 }

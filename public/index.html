@@ -12,6 +12,7 @@
   <script src="vendors/angular-aria.js"></script>
   <script src="vendors/angular-animate.js"></script>
   <script src="vendors/angular-material.min.js"></script>
+  <script src="vendors/accounting.js"></script>
   <script src="scripts/client.js"></script>
 </head>
 
@@ -61,7 +62,7 @@
             </md-card-header-text>
           </md-card-header>
           <md-card-content>
-            <p>Annual Salary: {{employee.salary}}</p>
+            <p>Annual Salary: {{vm.getEmployeeSalary(employee.salary)}}</p>
           </md-card-content>
           <md-card-actions layout="row" layout-align="end center">
             <md-button ng-show="employee.editing" class="md-raised md-primary md-hue-1" ng-click="vm.updateEmployee(employee.id, employee.editing)">Submit Edit</md-button>
@@ -103,7 +104,7 @@
             </md-card-header-text>
           </md-card-header>
           <md-card-content>
-            <p>Annual Salary: {{employee.salary}}</p>
+            <p>Annual Salary: {{vm.getEmployeeSalary(employee.salary)}}</p>
           </md-card-content>
           <md-card-actions layout="row" layout-align="end center">
             <md-button class="md-secondary md-raised md-cornered md-accent" ng-click="vm.toggleActive(employee.id, employee.is_active)">Activate</md-button>
