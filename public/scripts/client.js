@@ -9,6 +9,9 @@ var app = angular.module('EmployeesApp', ['ngMaterial']).config(function ($mdThe
         })
         .accentPalette('grey', {
             'default': '200'
+        })
+        .backgroundPalette('blue', {
+            'default': '50'
         });
 
 });;
