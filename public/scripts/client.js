@@ -46,11 +46,29 @@ app.controller('EmployeesController', ['$http', function ($http) {
         // Employee PUT is_active toggle
         $http({
             method: 'PUT',
-            url: '/employees/' + employeeId,
-            data: { status: is_active }
+            url: '/employees/is-active/' + employeeId,
+            data: {
+                status: is_active,
+                editing: false
+            }
         }).then(function (response) {
             self.getEmployees();
-        })
+        });
+    }
+
+    self.editStatus = function (employeeId, employeeEditing) {
+        if (employeeEditing) {
+            var editing = false;
+        } else {
+            var editing = true;
+        }
+        $http({
+            method: 'PUT',
+            url: '/employees/editing/' + employeeId,
+            data: { editStatus: editing }
+        }).then(function (response) {
+            self.getEmployees();
+        });
     }
 
     self.getEmployees();
@@ -62,16 +80,16 @@ function monthlySalaryExp(employees) {
 
     // Array of active employees
     var activeEmployees = employees.filter(function (employee) {
-        return employee.is_active;      
+        return employee.is_active;
     });
 
     // Array of active employee's salaries
     var salariesArray = activeEmployees.map(function (employee) {
         return employee.salary;
     });
-    
+
     // Calculate the total annual salary expenses
-    if(salariesArray.length !== 0) {
+    if (salariesArray.length !== 0) {
         var totalSalary = salariesArray.reduce(function (x, y) {
             return x + y;
         });
