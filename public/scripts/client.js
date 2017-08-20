@@ -29,6 +29,8 @@ app.controller('EmployeesController', ['$http', function ($http) {
         }).then(function (response) {
             self.getEmployees();
             self.newEmployee = {};
+            self.employeeAddForm.$setPristine();
+            self.employeeAddForm.$setUntouched();
         });
     };
 

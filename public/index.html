@@ -22,7 +22,7 @@
   <div layout="row" layout-padding>
     <div flex class="md-inline-form">
       <h1>Add Employee</h1>
-      <form name="employeeAddForm" ng-submit="vm.addEmployee()">
+      <form name="vm.employeeAddForm">
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>First name</label>
@@ -56,7 +56,7 @@
           </md-input-container>
         </div>
         <div layout-gt-sm="row">
-          <md-button class="md-raised md-cornered md-primary" type="submit">Submit</md-button>
+          <md-button class="md-raised md-cornered md-primary" type="submit" ng-click="vm.addEmployee()">Submit</md-button>
         </div>
       </form>
     </div>
