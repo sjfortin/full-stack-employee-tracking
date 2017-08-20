@@ -1,3 +1,13 @@
-h3.active {
-    color: darkblue !important;
+.banner {
+    text-align: center;
+    padding: 10px 0;
+    background: #212121;
+}
+
+.banner h1 {
+    color: #fff;
+}
+
+.total-expenditures {
+    text-align: center;
 }
