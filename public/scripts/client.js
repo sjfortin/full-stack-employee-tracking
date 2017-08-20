@@ -1,4 +1,17 @@
-var app = angular.module('EmployeesApp', ['ngMaterial']);
+var app = angular.module('EmployeesApp', ['ngMaterial']).config(function ($mdThemingProvider) {
+
+    $mdThemingProvider.theme('default')
+        .primaryPalette('blue', {
+            'default': '900',
+            'hue-1': '100',
+            'hue-2': '600',
+            'hue-3': 'A100'
+        })
+        .accentPalette('grey', {
+            'default': '200'
+        });
+
+});;
 
 app.controller('EmployeesController', ['$http', function ($http) {
     console.log('Employees Controller loaded');
@@ -68,6 +81,8 @@ app.controller('EmployeesController', ['$http', function ($http) {
             data: { editStatus: editing }
         }).then(function (response) {
             self.getEmployees();
+            self.changeEmployee = {};
+
         });
     }
 
@@ -78,7 +93,6 @@ app.controller('EmployeesController', ['$http', function ($http) {
             url: '/employees/update/' + employeeId,
             data: self.changeEmployee
         }).then(function (response) {
-            self.changeEmployee = {};
             self.editStatus(employeeId, employeeEditing)
         });
     }

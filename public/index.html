@@ -19,7 +19,7 @@
   <div class="banner">
     <h1>Employees Full Stack</h1>
   </div>
-  <div layout="row" layout-padding>
+  <div layout="row" layout-padding layout-margin>
     <div flex class="md-inline-form">
       <h1>Add Employee</h1>
       <form name="vm.employeeAddForm">
@@ -49,8 +49,8 @@
       </form>
     </div>
   </div>
-  <div layout-gt-sm layout="column" layout-padding>
-    <div flex="33">
+  <div layout-gt-sm layout="column" layout-padding layout-margin>
+    <div flex="33" class="active-employees">
       <h1>Active Employees</h1>
       <div ng-repeat="employee in vm.employees" ng-if="employee.is_active">
         <md-card>
@@ -64,8 +64,9 @@
             <p>Annual Salary: {{employee.salary}}</p>
           </md-card-content>
           <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-show="employee.editing" class="md-raised md-primary md-hue-1" ng-click="vm.updateEmployee(employee.id, employee.editing)">Submit Edit</md-button>
             <md-button ng-show="employee.is_active" class="md-secondary md-raised md-cornered md-primary" ng-click="vm.editStatus(employee.id, employee.editing)">{{!employee.editing ? 'Edit' : 'Cancel'}}</md-button>
-            <md-button class="md-secondary md-raised md-cornered md-primary" ng-click="vm.toggleActive(employee.id, employee.is_active)">Mark Inactive</md-button>
+            <md-button class="md-secondary md-raised md-cornered md-accent" ng-click="vm.toggleActive(employee.id, employee.is_active)">Mark Inactive</md-button>
           </md-card-actions>
           <md-card-footer ng-show="employee.editing">
             <h4>Edit {{employee.first_name}}</h4>
@@ -86,16 +87,15 @@
                 <label>Salary</label>
                 <input ng-model="vm.changeEmployee.salary" name="editSalary" type="number" min="0" max="9999999999" required>
               </md-input-container>
-              <md-button class="md-raised md-primary" ng-click="vm.updateEmployee(employee.id, employee.editing)">Submit Edit</md-button>
             </form>
           </md-card-footer>
         </md-card>
       </div>
     </div>
-    <div flex="33">
+    <div flex="33" class="inactive-employees">
       <h1>Inactive Employees</h1>
       <div ng-repeat="employee in vm.employees" ng-if="!employee.is_active">
-        <md-card style="background: #E0E0E0;">
+        <md-card>
           <md-card-header>
             <md-card-header-text>
               <span class="md-title">{{employee.first_name}} {{employee.last_name}}</span>
@@ -106,7 +106,7 @@
             <p>Annual Salary: {{employee.salary}}</p>
           </md-card-content>
           <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-secondary md-raised md-cornered" ng-click="vm.toggleActive(employee.id, employee.is_active)">Activate</md-button>
+            <md-button class="md-secondary md-raised md-cornered md-accent" ng-click="vm.toggleActive(employee.id, employee.is_active)">Activate</md-button>
           </md-card-actions>
         </md-card>
       </div>
