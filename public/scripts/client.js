@@ -87,18 +87,25 @@ app.controller('EmployeesController', ['$http', function ($http) {
     }
 
     // PUT update employee
-    self.updateEmployee = function (employeeId, employeeEditing) {  
+    self.updateEmployee = function (employeeId, employeeEditing, firstName, lastName, jobTitle, salary) {
         $http({
             method: 'PUT',
             url: '/employees/update/' + employeeId,
-            data: self.changeEmployee
+            data: {
+                id: employeeId,
+                editing: employeeEditing,
+                first_name: firstName,
+                last_name: lastName,
+                job_title: jobTitle,
+                salary: salary
+            }
         }).then(function (response) {
             self.editStatus(employeeId, employeeEditing)
         });
     }
 
     // Return formatted employee salary
-    self.getEmployeeSalary = function(salary) {
+    self.getEmployeeSalary = function (salary) {
         return accounting.formatMoney(salary);
     }
 

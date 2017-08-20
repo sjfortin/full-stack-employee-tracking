@@ -3,14 +3,14 @@
 }
 
 .total-expenditures {
-    background: #C8E6C9;
+    background: #fff;
+    text-align: center;
 }
 
 .active-employees {
-    background: #BBDEFB;
+    background: #fff;
 }
 
 .inactive-employees {
-    background: #E0E0E0;
-    ;
+    background: #fff;
 }
