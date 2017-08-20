@@ -41,8 +41,6 @@ router.put('/is-active/:id', function (req, res) {
 });
 
 router.put('/editing/:id', function (req, res) {
-    console.log(req.body.editing);
-
     pool.connect(function (errDatabase, client, done) {
         if (errDatabase) {
             console.log('Error connecting to database', errDatabase);
@@ -52,6 +50,25 @@ router.put('/editing/:id', function (req, res) {
                 done();
                 if (errQuery) {
                     console.log('Error making database query', errQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(201);
+                }
+            });
+        }
+    });
+});
+
+router.put('/update/:id', function (req, res) {
+    pool.connect(function (errDatabase, client, done) {
+        if (errDatabase) {
+            console.log('Error connecting to database', errDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query('UPDATE employees SET first_name=$1, last_name=$2, job_title=$3, salary=$4 WHERE id=$5;', [req.body.first_name, req.body.last_name, req.body.job_title, req.body.salary, req.params.id], function (errQuery, data) {
+                done();
+                if (errQuery) {
+                    console.log('Error making database queryssssssss', req.params.id);
                     res.sendStatus(500);
                 } else {
                     res.sendStatus(201);

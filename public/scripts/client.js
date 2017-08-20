@@ -6,7 +6,6 @@ app.controller('EmployeesController', ['$http', function ($http) {
     var self = this;
 
     self.employees = [];
-    self.isActive = 'active';
 
     // Employee GET request
     self.getEmployees = function () {
@@ -56,11 +55,12 @@ app.controller('EmployeesController', ['$http', function ($http) {
         });
     }
 
+    // PUT toggle editing = true or false
     self.editStatus = function (employeeId, employeeEditing) {
         if (employeeEditing) {
-            var editing = false;
+            editing = false;
         } else {
-            var editing = true;
+            editing = true;
         }
         $http({
             method: 'PUT',
@@ -68,6 +68,18 @@ app.controller('EmployeesController', ['$http', function ($http) {
             data: { editStatus: editing }
         }).then(function (response) {
             self.getEmployees();
+        });
+    }
+
+    // PUT update employee
+    self.updateEmployee = function (employeeId, employeeEditing) {  
+        $http({
+            method: 'PUT',
+            url: '/employees/update/' + employeeId,
+            data: self.changeEmployee
+        }).then(function (response) {
+            self.changeEmployee = {};
+            self.editStatus(employeeId, employeeEditing)
         });
     }
 
@@ -99,5 +111,6 @@ function monthlySalaryExp(employees) {
 
     // Calculate total monthly salary expenses
     var monthlyExpenditure = (totalSalary / 12).toFixed(2);
+
     return monthlyExpenditure;
 }
