@@ -3,7 +3,7 @@
 }
 
 .total-expenditures {
-    background: #fff;
+    background: #424242;
     text-align: center;
 }
 
@@ -19,6 +19,22 @@
     background: #fafafa;
 }
 
-md-card {
-    background: #fff;
+.active-employees md-card {
+    background: #E3F2FD;
+}
+
+.inactive-employees md-card {
+    background: #EEEEEE;
+}
+
+h1 {
+    color: #0D47A1;
+}
+
+h4 {
+    margin: 5px 0;
+}
+
+.total-expenditures h1 {
+    color: #fff;
 }
