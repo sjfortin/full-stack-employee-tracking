@@ -79,7 +79,7 @@
           <md-card-content>
             <p>Annual Salary: {{vm.getEmployeeSalary(employee.salary)}}</p>
             <!-- Employee Edit Form -->
-            <div ng-show="employee.editing" class="md-whiteframe-1dp edit-form" layout-padding>
+            <div ng-if="employee.editing" class="md-whiteframe-1dp edit-form" layout-padding>
               <h4>Edit {{employee.first_name}}</h4>
               <form name="vm.employeeUpdateForm">
                 <md-input-container class="md-block">
@@ -104,8 +104,8 @@
 
           <!-- Employee Action Buttons -->
           <md-card-actions layout="row" layout-align="end center">
-            <md-button ng-show="employee.editing" class="md-raised md-primary" ng-click="vm.updateEmployee(employee.id, employee.editing, employee.first_name, employee.last_name, employee.job_title, employee.salary)">Submit Edit</md-button>
-            <md-button ng-show="employee.is_active" class="md-secondary md-raised md-cornered md-primary" ng-click="vm.editStatus(employee.id, employee.editing)">{{!employee.editing ? 'Edit' : 'Cancel'}}</md-button>
+            <md-button ng-if="employee.editing" class="md-raised md-primary" ng-click="vm.updateEmployee(employee.id, employee.editing, employee.first_name, employee.last_name, employee.job_title, employee.salary)">Submit Edit</md-button>
+            <md-button ng-if="employee.is_active" class="md-secondary md-raised md-cornered md-primary" ng-click="vm.editStatus(employee.id, employee.editing)">{{!employee.editing ? 'Edit' : 'Cancel'}}</md-button>
             <md-button class="md-secondary md-raised md-cornered md-accent" ng-click="vm.toggleActive(employee.id, employee.is_active)">Mark Inactive</md-button>
           </md-card-actions>
 
@@ -126,7 +126,6 @@
           </md-card-header>
           <md-card-content>
             <p>Annual Salary: {{vm.getEmployeeSalary(employee.salary)}}</p>
-            <div></div>
           </md-card-content>
           <md-card-actions layout="row" layout-align="end center">
             <md-button class="md-secondary md-raised md-cornered md-accent" ng-click="vm.toggleActive(employee.id, employee.is_active)">Activate</md-button>

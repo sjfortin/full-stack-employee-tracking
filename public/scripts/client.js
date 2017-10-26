@@ -14,7 +14,7 @@ var app = angular.module('EmployeesApp', ['ngMaterial']).config(function ($mdThe
             'default': '50'
         });
 
-});;
+});
 
 app.controller('EmployeesController', ['$http', function ($http) {
     console.log('Employees Controller loaded');
@@ -46,7 +46,6 @@ app.controller('EmployeesController', ['$http', function ($http) {
             self.newEmployee = {};
             self.employeeAddForm.$setPristine();
             self.employeeAddForm.$setUntouched();
-            self.focusElement = "input1";
         });
     };
 
