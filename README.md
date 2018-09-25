@@ -2,8 +2,6 @@
 
 This is a full stack web application that records employee records along with their salary. The app also adds up all active employee salaries to display how much total monthly salary is being spent. 
 
-[https://serene-coast-18288.herokuapp.com](https://serene-coast-18288.herokuapp.com)
-
 ## Built With
 
 * AngularJS
